@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============ Tanker — cinematic display font (local) ============ */
+@font-face {
+  font-family: "Tanker";
+  src:
+    url("./assets/fonts/Tanker-Regular.woff2") format("woff2"),
+    url("./assets/fonts/Tanker-Regular.woff") format("woff"),
+    url("./assets/fonts/Tanker-Regular.ttf") format("truetype");
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============ Base ============ */
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-noir-950 text-white/80 font-sans antialiased;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(190, 26, 26, 0.45);
+    color: #fff;
+  }
+
+  h1, h2, h3 {
+    @apply text-white;
+  }
+}
+
+/* ============ Components ============ */
+@layer components {
+  .glass {
+    @apply bg-white/[0.04] backdrop-blur-xl border border-white/10;
+  }
+
+  .glass-strong {
+    @apply bg-noir-900/70 backdrop-blur-2xl border border-white/10;
+  }
+
+  /* Cinematic display heading */
+  .display {
+    font-family: "Tanker", "Anybody", sans-serif;
+    text-transform: uppercase;
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-wider2 text-white/45;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3
+      text-sm font-semibold text-white transition-all duration-300
+      hover:bg-accent-alt hover:shadow-accent-glow hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/15
+      bg-white/[0.03] px-7 py-3 text-sm font-semibold text-white/90 backdrop-blur-md
+      transition-all duration-300 hover:bg-white/10 hover:border-white/25 hover:-translate-y-0.5;
+  }
+
+  .gold-text {
+    @apply text-gold;
+  }
+
+  .hairline {
+    @apply h-px w-full bg-gold-line opacity-40;
+  }
+
+  /* hide scrollbar but keep scroll for rows */
+  .no-scrollbar,
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ============ Utilities ============ */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+    mask-image: linear-gradient(to right, #000 88%, transparent 100%);
+  }
+}
+
+/* ============ Custom scrollbar (page) ============ */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0c0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #2e353c;
+  border-radius: 999px;
+  border: 2px solid #0a0c0e;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a424a;
+}
+
+/* skeleton shimmer */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #15191d 0%,
+    #1f262c 40%,
+    #15191d 80%
+  );
+  background-size: 700px 100%;
+  animation: shimmer 1.8s linear infinite;
+}
+
+/* Background video/trailer specific overrides */
+#hero-player {
+  pointer-events: none !important;
+}
